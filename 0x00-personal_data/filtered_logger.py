@@ -21,7 +21,7 @@ def filter_datum(
         fields: List[str],
         redaction: str,
         message: str,
-        separator: str):
+        separator: str) -> str:
     """A function tah maske fields"""
     for field in fields:
         message = re.sub(
