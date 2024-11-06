@@ -23,7 +23,6 @@ def filter_datum(fields, redaction, message, separator):
             "{}=[^ {}]*{}".format(field, *[separator]*2),
             "{}={}{}".format(field, redaction, separator),
             message)
-
     return message
 
 
