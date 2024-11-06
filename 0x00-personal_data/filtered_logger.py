@@ -2,6 +2,7 @@
 """Utilty module"""
 import logging
 import re
+from typing import List
 
 
 """
@@ -16,13 +17,16 @@ is separating all fields in the log line (message)
 """
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(
+        fields: List[str],
+        redaction: str,
+        message: str,
+        separator: str):
     """A function tah maske fields"""
     for field in fields:
         message = re.sub(
-            "{}=[^ {}]*{}".format(field, *[separator]*2),
-            "{}={}{}".format(field, redaction, separator),
-            message)
+            f"{field}=[^ {separator}]*{separator}",
+            f"{field}={redaction}{separator}", message)
     return message
 
 
