@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Utilty module"""
+"""Utilty module personal data"""
 import logging
-import re
 from typing import List
+import re
 
 
 def filter_datum(
