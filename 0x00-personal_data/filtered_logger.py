@@ -25,7 +25,7 @@ def filter_datum(
     """A function tah maske fields"""
     for field in fields:
         message = re.sub(
-            f"{field}=[^ {separator}]*{separator}",
+            f"{field}=(.*?)*{separator}",
             f"{field}={redaction}{separator}", message)
     return message
 
