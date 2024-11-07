@@ -5,6 +5,7 @@ import mysql.connector
 from typing import List
 import re
 import os
+import bcrypt
 
 
 def filter_datum(
