@@ -3,7 +3,8 @@
 import logging
 from typing import List
 import re
-import csv
+import os
+import mysql.connector
 
 
 def filter_datum(
@@ -55,3 +56,14 @@ def get_logger() -> logging.Logger:
     logger.propagate = False
     logger.addHandler(handler)
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """Get db client"""
+    cnx = mysql.connector.connect(
+        user=os.environ.get("PERSONAL_DATA_DB_USER", default="root"),
+        password=os.environ.get("PERSONAL_DATA_DB_PASSWORD", default=""),
+        host=os.environ.get("PERSONAL_DATA_DB_HOST", default="localhost"),
+        database=os.environ.get("PERSONAL_DATA_DB_NAME", default="my_db")
+    )
+    return cnx
