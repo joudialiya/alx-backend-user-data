@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Utilty module personal data"""
 import logging
+import mysql.connector
 from typing import List
 import re
 import os
-import mysql.connector
 
 
 def filter_datum(
@@ -59,7 +59,7 @@ def get_logger() -> logging.Logger:
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
-    """Get mysql db client"""
+    """Get mysql db client connection"""
     cnx = mysql.connector.connect(
         user=os.getenv('PERSONAL_DATA_DB_USERNAME', 'root'),
         password=os.getenv('PERSONAL_DATA_DB_PASSWORD', ''),
