@@ -33,6 +33,6 @@ def unautorized():
 
 
 @app_views.route('/forbidden', strict_slashes=False)
-def unautorized():
+def forbidden():
     """unauthorized route"""
     abort(403)
