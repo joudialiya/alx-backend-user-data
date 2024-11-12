@@ -4,7 +4,7 @@
 from flask import request
 from typing import List, TypeVar
 import re
-
+import fnmatch
 
 class Auth:
     """Auth manager class"""
@@ -17,14 +17,9 @@ class Auth:
         if path[-1] != "/":
             path += "/"
         for excluded_path in excluded_paths:
-            if excluded_path[-1] == "*":
-                if re.match(excluded_path, path):
-                    return False
-            else:
-                if excluded_path == path:
-                    return False
-        else:
-            return True
+            if re.match(excluded_path, path):
+                return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """extract credentials"""
