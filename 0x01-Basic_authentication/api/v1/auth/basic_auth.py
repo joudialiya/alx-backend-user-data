@@ -48,7 +48,7 @@ class BasicAuth(Auth):
         if type(decoded_base64_authorization_header) != str:
             return (None, None)
         matches = re.match(
-            r"(.*):(.*)",
+            r"(.*?):(.*)",
             decoded_base64_authorization_header)
         if not matches:
             return (None, None)
