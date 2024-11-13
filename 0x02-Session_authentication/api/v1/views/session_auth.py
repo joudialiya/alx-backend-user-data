@@ -9,15 +9,15 @@ import os
 
 @app_views.route(
     "/auth_session/login",
-    methods=["Post"],
+    methods=["POST"],
     strict_slashes=False)
 def login():
     """Login logic"""
     email = request.form.get("email")
     password = request.form.get("password")
-    if not email or len(email) is 0:
+    if not email or email == '':
         return {"error": "email missing"}, 400
-    if not password or len(password) is 0:
+    if not password or password == '':
         return {"error": "password missing"}, 400
     try:
         users = User.search({"email": email})
@@ -29,8 +29,8 @@ def login():
     if not user.is_valid_password(password):
         return {"error": "wrong password"}, 401
     from api.v1.app import auth
-    session_id = auth.create_session(email)
-    response = jsonify(user)
+    session_id = auth.create_session(user.id)
+    response = jsonify(user.to_json())
     response.set_cookie(
         os.getenv("SESSION_NAME", "_my_session_id"),
         session_id)
