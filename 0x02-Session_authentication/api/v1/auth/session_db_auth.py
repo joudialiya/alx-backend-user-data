@@ -21,6 +21,7 @@ class SessionDBAuth(SessionExpAuth):
             session_id=session_id,
         )
         session_onject.save()
+        return session_id
 
     def user_id_for_session_id(self, session_id=None):
         """Return user from session id"""
