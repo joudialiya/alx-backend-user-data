@@ -27,9 +27,12 @@ class SessionDBAuth(SessionExpAuth):
         """Return user from session id"""
         if not session_id or type(session_id) is not str:
             return None
-        session_object: UserSession = UserSession.get(session_id)
-        if not session_object:
+        session_objects = UserSession.search({
+            "session_id": session_id
+        })
+        if len(session_objects) == 0:
             return None
+        session_object: UserSession = session_objects[0]
         if self.session_duration <= 0:
             return session_object.user_id
         created_at: datetime = session_object.updated_at
@@ -50,6 +53,9 @@ class SessionDBAuth(SessionExpAuth):
             return False
         if not self.user_id_for_session_id(cookie):
             return False
-        session_object: UserSession = UserSession.get(cookie)
+        session_objects = UserSession.search({
+            "session_id": cookie
+        })
+        session_object: UserSession = session_objects[0]
         session_object.remove()
         return True
