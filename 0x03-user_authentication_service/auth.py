@@ -4,8 +4,8 @@
 import bcrypt
 from db import DB
 from user import User
-from sqlalchemy.orm.exc import NoResultFound
 from uuid import uuid4
+from sqlalchemy.orm.exc import NoResultFound
 
 
 def _generate_uuid() -> str:
