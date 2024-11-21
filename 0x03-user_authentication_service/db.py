@@ -51,9 +51,9 @@ class DB:
             raise NoResultFound
         return user
 
-    def update_user(self, id: int, **kwarg) -> None:
+    def update_user(self, user_id: int, **kwarg) -> None:
         """Updatea user"""
-        user = self.find_user_by(id=id)
+        user = self.find_user_by(id=user_id)
         for attr, value in kwarg.items():
             if not hasattr(User, attr):
                 raise ValueError
